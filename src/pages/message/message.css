@@ -1,0 +1,23 @@
+.chat-user,
+.chat-ai {
+  max-width: 66vw;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  background: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px rgba(60, 59, 66, 0.4)
+}
+
+.chat-item {
+  margin-bottom: 2vh; 
+}
+
+.chat-container {
+  margin-bottom: 20vh;
+}
+
+.redirect-whatsapp{
+    background: #4C3CE3;
+}

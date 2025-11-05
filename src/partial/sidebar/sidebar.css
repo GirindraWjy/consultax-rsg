@@ -1,0 +1,4 @@
+.container-sidebar{
+    box-shadow: 0 6px 10px rgba(126, 126, 126, 0.3);
+    z-index: 9999;
+}

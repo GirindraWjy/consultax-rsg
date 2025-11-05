@@ -1,0 +1,10 @@
+.container-inheritance {
+  background-color: white;
+  height: 82vh;
+  width: 100%;
+  box-shadow: 0 6px 4px rgba(126, 126, 126, 0.3);
+  border-radius: 1vw;
+  padding: 4vh 3vh 3vh 3vh;
+  position: relative;
+  overflow: hidden;
+}
