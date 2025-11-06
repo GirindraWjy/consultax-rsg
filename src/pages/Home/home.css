@@ -6,7 +6,13 @@
 
 .home-title {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 400;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.sub-header {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
     letter-spacing: -0.02em;
 }
 
@@ -20,8 +26,23 @@
     transition: all 0.2s ease;
     cursor: pointer;
 }
+.card-menu-mobile {
+    width: auto;
+    height: auto;
+    border-radius: 0.75rem;
+    padding: 1px 2px 2px 1px;
+    background: linear-gradient(135deg, #4C3CE3 0%, #2F22B0 50%, #E9E5FF 100%);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
 
 .card-menu:active {
+    filter: brightness(1.2);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(76, 60, 227, 0.3);
+}
+
+.card-menu-mobile:active {
     filter: brightness(1.2);
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(76, 60, 227, 0.3);
@@ -34,7 +55,18 @@
     height: 100%;
 }
 
+.card-menu-mobile>div {
+    background-color: white;
+    border-radius: inherit;
+    width: auto;
+    height: auto;
+}
+
 .send-msg {
     pointer-events: auto;
     cursor: pointer;
+}
+
+.img-card-mobile{
+    margin-top: 20px;
 }

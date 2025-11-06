@@ -12,7 +12,7 @@ import bg from "../assets/png/bg-consultax.png";
 
 const Root = () => {
   const renderPage = (Component: any) => (
-    <div class="relative min-h-screen p-6">
+    <div class="relative min-h-screen">
       <Component />
     </div>
   );
@@ -37,7 +37,7 @@ const Root = () => {
             <Router>
               <Route path="/" component={() => <Navigate href="/home" />} />
               <Route path="/home" component={() => renderPage(Home)} />
-              <Route path="/profile" component={() => renderPage(Profile)} />
+              <Route path="/chat-with-expert" component={() => renderPage(Profile)} />
               <Route path="/pph" component={() => renderPage(Pph)} />
               <Route path="/grant-tax" component={() => renderPage(CalcTable)} />
               <Route path="/inheritance-tax" component={() => renderPage(InheriTax)} />

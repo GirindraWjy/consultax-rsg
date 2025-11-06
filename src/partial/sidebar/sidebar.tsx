@@ -1,4 +1,4 @@
-import { createEffect, createSignal, type Component } from "solid-js";
+import { createEffect, createSignal, Show, type Component } from "solid-js";
 import { Transition } from "solid-transition-group";
 import logo from "../../assets/png/logo-sidebar.png";
 import user from "../../assets/svg/User.svg";
@@ -6,41 +6,94 @@ import message from "../../assets/svg/message-plus.svg";
 import "./sidebar.css";
 
 const Sidebar: Component = () => {
-  const [active, setActive] = createSignal<"home" | "profile">(
-    location.pathname === "/profile" ? "profile" : "home"
-  );
+  const [active, setActive] = createSignal<"home" | "chat-with-expert">(location.pathname === "/chat-with-expert" ? "chat-with-expert" : "home");
+  const [open, setOpen] = createSignal(false);
 
   createEffect(() => {
     if (location.pathname === "/home") setActive("home");
-    else if (location.pathname === "/profile") setActive("profile");
+    else if (location.pathname === "/chat-with-expert") setActive("chat-with-expert");
   });
 
   const handleClick = () => {
-    setActive(active() === "home" ? "profile" : "home");
+    setActive(active() === "home" ? "chat-with-expert" : "home");
   };
 
-  return (
-    <div class="container-sidebar h-full flex-col items-center flex gap-10 px-3">
-      <a href="/home">
-        <img src={logo} alt="logo" class="logo-img w-12 h-12" />
-      </a>
 
-      <div class="relative cursor-pointer" onClick={handleClick}>
-        <a href={active() === "home" ? "/home" : "/profile"}>
-          <Transition
-            mode="outin"
-            enterClass="fade-enter"
-            enterActiveClass="fade-enter-active"
-            exitClass="fade-exit"
-            exitActiveClass="fade-exit-active"
-          >
-            <img
-              src={active() === "home" ? user : message}
-              alt="switch icon"
-              class="img-switch w-12 h-12 p-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110"
-            />
-          </Transition>
+  return (
+    <div>
+      {/* DESKTOP SIDEBAR */}
+      <div class="hidden md:flex container-sidebar h-full flex-col items-center gap-8 px-2">
+        <a href="/home">
+          <img src={logo} alt="logo" class="logo-img w-9 h-9" />
         </a>
+
+        <div class="relative cursor-pointer" onClick={handleClick}>
+          <a href={active() === "home" ? "/home" : "/chat-with-expert"}>
+            <Transition
+              mode="outin"
+              enterClass="fade-enter"
+              enterActiveClass="fade-enter-active"
+              exitClass="fade-exit"
+              exitActiveClass="fade-exit-active"
+            >
+              <img
+                src={active() === "home" ? user : message}
+                alt="switch icon"
+                class="img-switch w-10 h-10 p-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110"
+              />
+            </Transition>
+          </a>
+        </div>
+      </div>
+
+      {/* MOBILE SIDEBAR */}
+      <div class="flex md:hidden container-sidebar-mobile top-2 py-4 w-6 absolute flex-col items-center gap-2">
+        <div class="" onClick={() => setOpen(true)}> > </div>
+        <Show when={open()}>
+          <div
+            class={`fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-all duration-300 ${open() ? "opacity-100" : "opacity-0"
+              }`}
+            onClick={() => setOpen(false)}
+          />
+        </Show>
+
+        <Transition
+          enterActiveClass="transition-all duration-300"
+          exitActiveClass="transition-all duration-300"
+          enterClass="-translate-x-full"
+          enterToClass="translate-x-0"
+          exitClass="translate-x-0"
+          exitToClass="-translate-x-full"
+        >
+          <Show when={open()}>
+            <div class="fixed top-0 left-0 flex flex-col gap-2 w-60 h-full bg-white shadow-lg z-50 p-2">
+              <div class="menu-sidebar" onClick={() => setOpen(false)}>
+                <img
+                  src={logo}
+                  alt="switch icon"
+                  class="img-switch w-10 h-10 p-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110"
+                />
+                <div class="font-semibold font-[Plus_Jakarta_Sans]">
+                  Consultax
+                </div>
+              </div>
+              <div class="cursor-pointer" onClick={handleClick}>
+                <a href={active() === "home" ? "/chat-with-expert" : "/home"}>
+                  <div onClick={() => setOpen(false)} class="menu-sidebar">
+                    <img
+                      src={active() === "home" ? user : message}
+                      alt="switch icon"
+                      class="img-switch w-10 h-10 p-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110"
+                    />
+                    <div class="font-semibold font-[Plus_Jakarta_Sans]">
+                      {active() === "home" ? "Chat with Experties" : "Message with AI"}
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </Show>
+        </Transition>
       </div>
     </div>
   );

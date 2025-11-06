@@ -12,7 +12,12 @@ const PageWrapper: Component<PageWrapperProps> = (props) => {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -80 }}
       transition={{ duration: 0.4, easing: "ease-in-out" }}
-      style={{ position: "relative"}}
+      style={{
+        position: "relative",
+        minHeight: "100vh",
+        height: "100vh",
+        width: "100%",
+      }}
     >
       {props.children}
     </Motion.div>

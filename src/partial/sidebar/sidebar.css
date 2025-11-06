@@ -1,11 +1,28 @@
 .logo-img {
-  margin-top: 8vh;
+  margin-top: 4vh;
+}
+.logo-img-mobile {
+  margin-top: 4vh;
+}
+
+.menu-sidebar{
+  padding: 10px;
+  background: #F8F7FE;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .container-sidebar {
   box-shadow: 0 6px 10px rgba(126, 126, 126, 0.3);
   z-index: 9999;
+}
 
+.container-sidebar-mobile {
+  box-shadow: 0 6px 10px rgba(126, 126, 126, 0.3);
+  z-index: 9999;
+  border-radius: 0px 10px 10px 0px;
 }
 
 .img-switch {

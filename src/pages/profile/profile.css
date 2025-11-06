@@ -4,9 +4,21 @@
     letter-spacing: -0.02em;
 }
 
+.profile-title-mobile {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 1vh;
+}
+
 .img-header {
     box-shadow: 0 8px 10px rgba(76, 60, 227, 0.3);
     border-radius: 3vh;
+}
+
+.img-header-mobile {
+    box-shadow: 0 8px 10px rgba(76, 60, 227, 0.3);
+    border-radius: 1vh;
 }
 
 .card-user{
