@@ -21,7 +21,9 @@ const InheritanceTable: Component = () => {
               </a>
               <div class="font-semibold">Tabel of Inheritance</div>
             </div>
-            <img src={send} class="w-10 h-10" alt="" />
+            <a href="/message">
+              <img src={send} class="w-10 h-10" alt="" />
+            </a>
           </div>
           <div class="relative z-10">
             <div class="grid grid-cols-12 gap-6">
