@@ -1,0 +1,20 @@
+.profile-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.img-header {
+    box-shadow: 0 8px 10px rgba(76, 60, 227, 0.3);
+    border-radius: 3vh;
+}
+
+.card-user{
+    background: linear-gradient(to bottom, #2F22B0, #0C0458);
+    text-align: center;
+    border-radius: 2vh;
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: xx-large;
+}

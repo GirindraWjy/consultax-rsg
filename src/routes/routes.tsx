@@ -1,11 +1,13 @@
 import { Router, Route, Navigate } from "@solidjs/router";
 import { HopeProvider } from "@hope-ui/solid";
+import { Transition } from "solid-transition-group";
 import Home from "../pages/Home/Home";
 import Pph from "../pages/pph/pph";
 import CalcTable from "../pages/grant-tax/gran-tax";
 import InheriTax from "../pages/inheritance-tax/inheritance-tax";
 import Message from "../pages/message/message";
 import Sidebar from "../partial/sidebar/sidebar";
+import Profile from "../pages/profile/profile";
 import bg from "../assets/png/bg-consultax.png";
 
 const Root = () => {
@@ -35,6 +37,7 @@ const Root = () => {
             <Router>
               <Route path="/" component={() => <Navigate href="/home" />} />
               <Route path="/home" component={() => renderPage(Home)} />
+              <Route path="/profile" component={() => renderPage(Profile)} />
               <Route path="/pph" component={() => renderPage(Pph)} />
               <Route path="/grant-tax" component={() => renderPage(CalcTable)} />
               <Route path="/inheritance-tax" component={() => renderPage(InheriTax)} />
