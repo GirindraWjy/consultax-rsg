@@ -7,6 +7,18 @@ import wallet from "../../assets/png/wallet-minus.png"
 import abacus from "../../assets/png/abacus.png"
 import sendIcon from "../../assets/png/send-icon.png"
 
+import {
+  _sendMsg as sendMsg,
+  _setSendMsg as setSendMsg,
+  _chatHistory as chatHistory,
+  _setChatHistory as setChatHistory,
+  _loading as loading,
+  _setLoading as setLoading,
+  _answer as answer,
+  _setAnswer as setAnswer,
+  getData
+} from "../../store/store";
+
 const Home: Component = () => {
   const navigate = useNavigate();
 
@@ -57,6 +69,16 @@ const Home: Component = () => {
         <div class="w-[60vw] pt-[10vh]">
           <InputGroup>
             <Input
+              value={sendMsg()}
+              onInput={(e: any) => setSendMsg(e.currentTarget.value)}
+              onKeyDown={(e: any) => {
+                if (loading()) return;
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  getData();
+                  navigate("/message");
+                }
+              }}
               style={{
                 background: "white",
                 "border-radius": "2vh",
@@ -69,8 +91,15 @@ const Home: Component = () => {
             />
             <InputRightElement
               class="send-msg"
-              style={{ top: "50%", transform: "translateY(-50%)", right: "2%" }}
-              onClick={() => navigate("/message")}
+              style={{
+                top: "50%", transform: "translateY(-50%)", right: "2%", cursor: loading() ? "not-allowed" : "pointer",
+                opacity: loading() ? 0.5 : 1,
+                pointerEvents: loading() ? "none" : "auto",
+              }}
+              onClick={() => {
+                navigate("/message");
+                getData();
+              }}
             >
               <img src={sendIcon} alt="" />
             </InputRightElement>
@@ -80,10 +109,10 @@ const Home: Component = () => {
 
       {/* MOBILE VERSION */}
       <div class="p-4 pt-30 font-[Plus_Jakarta_Sans] block md:hidden">
-        <div class="home-title text-2xl inline-block bg-[linear-gradient(135deg,#000000_0%,#FFCF27_45%,#4C3CE3_100%)] bg-clip-text text-transparent">
+        <div class="home-title text-center text-2xl inline-block bg-[linear-gradient(135deg,#000000_0%,#FFCF27_45%,#4C3CE3_100%)] bg-clip-text text-transparent">
           Hi There, What <br /> do you want to know about taxes?
         </div>
-        <div class="text-[12px] text-black/80 pt-[1vh]">
+        <div class="text-[12px] text-black/80 pt-[1vh] text-center">
           An AI tax assistant that helps you understand income tax rules, calculates liabilities, <br />
           and provides practical guidance based on the latest regulations.
         </div>
@@ -91,7 +120,7 @@ const Home: Component = () => {
         <div class="flex gap-3 pt-4 flex-col w-full">
           <a href="/pph">
             <div class="card-menu-mobile">
-              <div class="text-[12px] px-4 pt-2 font-medium font-[Plus_Jakarta_Sans]">
+              <div class="text-[12px] flex flex-col items-center px-4 pt-2 font-medium font-[Plus_Jakarta_Sans]">
                 Display the PPh tax calculation table
                 <img src={wallet} alt="" class="img-card-mobile h-8 w-8" />
               </div>
@@ -99,7 +128,7 @@ const Home: Component = () => {
           </a>
           <a href="/grant-tax">
             <div class="card-menu-mobile">
-              <div class="text-[12px] px-4 pt-2 font-medium font-[Plus_Jakarta_Sans]">
+              <div class="text-[12px] flex flex-col items-center px-4 pt-2 font-medium font-[Plus_Jakarta_Sans]">
                 Display the Grants tax calculation table
                 <img src={abacus} alt="" class="img-card-mobile h-8 w-8" />
               </div>
@@ -107,7 +136,7 @@ const Home: Component = () => {
           </a>
           <a href="/inheritance-tax">
             <div class="card-menu-mobile">
-              <div class="text-[12px] px-4 pt-2 font-medium font-[Plus_Jakarta_Sans]">
+              <div class="text-[12px] flex flex-col items-center px-4 pt-2 font-medium font-[Plus_Jakarta_Sans]">
                 Display the Inheritances tax calculation table
                 <img src={abacus} alt="" class="img-card-mobile h-8 w-8" />
               </div>
@@ -120,6 +149,15 @@ const Home: Component = () => {
         >
           <InputGroup>
             <Input
+              onInput={(e: any) => setSendMsg(e.currentTarget.value)}
+              onKeyDown={(e: any) => {
+                if (loading()) return;
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  getData();
+                  navigate("/message");
+                }
+              }}
               style={{
                 background: "white",
                 "border-radius": "1.5vh",
@@ -129,7 +167,7 @@ const Home: Component = () => {
               _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none" }}
               placeholder="tell your problem now..."
             />
-            <InputRightElement class="send-msg" style={{ top: "50%", transform: "translateY(-50%)", right: "2%", }} onClick={() => navigate("/message")}
+            <InputRightElement class="send-msg" style={{ top: "50%", transform: "translateY(-50%)", right: "2%", }} onClick={() => { navigate("/message"); getData(); }}
             >
               <img src={sendIcon} alt="" />
             </InputRightElement>

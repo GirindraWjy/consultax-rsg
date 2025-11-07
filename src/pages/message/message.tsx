@@ -3,50 +3,26 @@ import { Input, InputGroup, InputRightElement } from "@hope-ui/solid";
 import "./message.css";
 import user from "../../assets/png/user-icon.png"
 import ai from "../../assets/png/ai-icon.png"
-import { useNavigate } from "@solidjs/router";
 import sendIcon from "../../assets/png/send-icon.png"
 import PageWrapper from "../wrapper/wrapper";
 import { consultaxService } from "../../service";
 import { Spinner } from "@hope-ui/solid";
 
+import {
+  _sendMsg as sendMsg,
+  _setSendMsg as setSendMsg,
+  _chatHistory as chatHistory,
+  _setChatHistory as setChatHistory,
+  _loading as loading,
+  _setLoading as setLoading,
+  _answer as answer,
+  _setAnswer as setAnswer,
+  getData
+} from "../../store/store";
+
+
 const MessagePage: Component = () => {
 
-  const navigate = useNavigate();
-
-  const [sendMsg, setSendMsg] = createSignal("");
-  const [takeMsg, setTakeMsg] = createSignal("");
-  const [answer, setAnswer] = createSignal("");
-  const [chatHistory, setChatHistory] = createSignal<{ user?: string; ai?: string }[]>([]);
-  const [loading, setLoading] = createSignal(false);
-
-  const getData = () => {
-    const userMessage = sendMsg().trim();
-    if (!userMessage) return;
-
-    setChatHistory(prev => [...prev, { user: userMessage }]);
-
-    let aiIndex = -1;
-    setChatHistory(prev => {
-      aiIndex = prev.length;
-      return [...prev, { ai: "loading" }];
-    });
-
-    setLoading(true);
-
-    consultaxService.getAIMsg(userMessage).then((data: any) => {
-      const aiMessage = data.ai_res;
-
-      setChatHistory(prev => {
-        const newHistory = [...prev];
-        newHistory[aiIndex] = { ai: aiMessage };
-        return newHistory;
-      });
-
-      setLoading(false);
-    });
-
-    setSendMsg("");
-  };
 
   createEffect(() => {
     console.log("jawaban ai:", answer());
@@ -54,15 +30,15 @@ const MessagePage: Component = () => {
 
   return (
     <div class="font-[Plus_Jakarta_Sans]">
-      <div class="pl-[10vw] pe-[10vw] hidden md:block">
+      <div class="pl-[10vw] pe-[10vw] pt-10 hidden md:block">
         <PageWrapper>
-          <div class="chat-container">
+          <div class="chat-container pb-40">
             <For each={chatHistory()} fallback={<div>Ask Anything with AI</div>}>
               {(chat, idx) => (
                 <>
                   {chat.user && (
                     <div class="chat-item flex justify-end items-start gap-3">
-                      <div class="chat-user">{chat.user}</div>
+                      <div class="chat-user"  style={{ "white-space": "pre-wrap" }}>{chat.user}</div>
                       <img src={user} alt="user" class="w-12 h-12 object-contain rounded-full flex-shrink-0"
                       />
                     </div>
@@ -153,7 +129,7 @@ const MessagePage: Component = () => {
                 <>
                   {chat.user && (
                     <div class="chat-item flex justify-end items-start gap-1">
-                      <div class="chat-user">{chat.user}</div>
+                      <div class="chat-user" style={{ "white-space": "pre-wrap" }}>{chat.user}</div>
                       <img src={user} alt="user" class="w-12 h-12 object-contain rounded-full flex-shrink-0"
                       />
                     </div>

@@ -27,6 +27,7 @@
     cursor: pointer;
 }
 .card-menu-mobile {
+    text-align: center;
     width: auto;
     height: auto;
     border-radius: 0.75rem;

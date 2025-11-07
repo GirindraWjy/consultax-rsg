@@ -1,21 +1,55 @@
-import { createEffect, createSignal, Show, type Component } from "solid-js";
+import { createEffect, createSignal, onCleanup, onMount, Show, type Component } from "solid-js";
 import { Transition } from "solid-transition-group";
 import logo from "../../assets/png/logo-sidebar.png";
 import user from "../../assets/svg/User.svg";
 import message from "../../assets/svg/message-plus.svg";
 import "./sidebar.css";
+import PageWrapper from "../../pages/wrapper/wrapper";
 
 const Sidebar: Component = () => {
   const [active, setActive] = createSignal<"home" | "chat-with-expert">(location.pathname === "/chat-with-expert" ? "chat-with-expert" : "home");
   const [open, setOpen] = createSignal(false);
 
-  createEffect(() => {
-    if (location.pathname === "/home") setActive("home");
-    else if (location.pathname === "/chat-with-expert") setActive("chat-with-expert");
+  const syncActiveFromPath = () => {
+    const p = window.location.pathname;
+    if (p === "/chat-with-expert") setActive("chat-with-expert");
+    else setActive("home");
+  };
+
+  onMount(() => {
+    if (!(window as any).__historyPatched) {
+      const _pushState = history.pushState;
+      const _replaceState = history.replaceState;
+
+      history.pushState = function (...args: Parameters<typeof history.pushState>) {
+        const ret = _pushState.apply(this, args);
+        window.dispatchEvent(new Event("locationchange"));
+        return ret;
+      };
+
+      history.replaceState = function (...args: Parameters<typeof history.replaceState>) {
+        const ret = _replaceState.apply(this, args);
+        window.dispatchEvent(new Event("locationchange"));
+        return ret;
+      };
+
+      (window as any).__historyPatched = true;
+    }
+
+    const onLocationChange = () => syncActiveFromPath();
+    window.addEventListener("popstate", onLocationChange);
+    window.addEventListener("locationchange", onLocationChange);
+
+    onCleanup(() => {
+      window.removeEventListener("popstate", onLocationChange);
+      window.removeEventListener("locationchange", onLocationChange);
+    });
   });
 
   const handleClick = () => {
-    setActive(active() === "home" ? "chat-with-expert" : "home");
+    const next = active() === "home" ? "chat-with-expert" : "home";
+    setActive(next);
+    history.pushState({}, "", `/${next}`);
   };
 
 
@@ -67,16 +101,18 @@ const Sidebar: Component = () => {
         >
           <Show when={open()}>
             <div class="fixed top-0 left-0 flex flex-col gap-2 w-60 h-full bg-white shadow-lg z-50 p-2">
-              <div class="menu-sidebar" onClick={() => setOpen(false)}>
-                <img
-                  src={logo}
-                  alt="switch icon"
-                  class="img-switch w-10 h-10 p-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110"
-                />
-                <div class="font-semibold font-[Plus_Jakarta_Sans]">
-                  Consultax
+              <a href="/home">
+                <div class="menu-sidebar" onClick={() => setOpen(false)}>
+                  <img
+                    src={logo}
+                    alt="switch icon"
+                    class="img-switch w-10 h-10 p-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110"
+                  />
+                  <div class="font-semibold font-[Plus_Jakarta_Sans]">
+                    Consultax
+                  </div>
                 </div>
-              </div>
+              </a>
               <div class="cursor-pointer" onClick={handleClick}>
                 <a href={active() === "home" ? "/chat-with-expert" : "/home"}>
                   <div onClick={() => setOpen(false)} class="menu-sidebar">
