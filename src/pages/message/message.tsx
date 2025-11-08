@@ -55,59 +55,77 @@ const MessagePage: Component = () => {
         <PageWrapper>
           <div class="chat-container pt-10 pb-40">
             <For each={chatHistory()} fallback={<div>Ask Anything with AI</div>}>
-              {(chat, idx) => (
-                <>
-                  {chat.user && (
-                    <div class="chat-item flex justify-end items-start gap-3">
-                      <div class="chat-user" style={{ "white-space": "pre-wrap" }}>{chat.user}</div>
-                      <img src={user} alt="user" class="w-12 h-12 object-contain rounded-full flex-shrink-0"
-                      />
-                    </div>
-                  )}
+              {(chat, idx) => {
+                const isLastAI =
+                  idx() === chatHistory().length - 1 && chat.ai !== "loading";
 
-                  {chat.ai && (
-                    <div class="chat-item flex flex-col justify-start items-start gap-3">
-                      <div class="flex gap-2 items-start">
-                        <img src={ai} alt="ai" class="w-12 h-12 object-contain rounded-full flex-shrink-0"
+                return (
+                  <>
+                    {chat.user && (
+                      <div class="chat-item flex justify-end items-start gap-3">
+                        <div class="chat-user" style={{ "white-space": "pre-wrap" }}>
+                          {chat.user}
+                        </div>
+                        <img
+                          src={user}
+                          alt="user"
+                          class="w-12 h-12 object-contain rounded-full flex-shrink-0"
                         />
-                        <div class="chat-ai flex flex-col items-start gap-2">
-                          {chat.ai === "loading" ? (
-                            <Spinner size="sm" colorScheme="purple" />
-                          ) : (
-                            <div>
-                              {/* <div
-                                innerHTML={formatText(chat.ai)}
-                                style={{
-                                  "white-space": "normal",
-                                  "word-wrap": "break-word",
-                                  "line-height": "1.6",
-                                }}
-                              /> */}
-                              <AnimatedText text={formatText(chat.ai)} />
-                              {chatHistory().filter(c => c.ai).indexOf(chat) > 0 && (
-                                <div class="pt-6">
-                                  <div>
-                                    Klik tombol Whatsapp dibawah ini untuk bicara langsung dengan experties
-                                  </div>
-                                  <a
-                                    href="https://wa.me/6282136326124"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    <div class="redirect-whatsapp inline-block rounded-lg px-3 py-2 text-white bg-[#4F46E5] hover:bg-[#4338CA] transition">
-                                      Chat Whatsapp
+                      </div>
+                    )}
+
+                    {chat.ai && (
+                      <div class="chat-item flex flex-col justify-start items-start gap-3">
+                        <div class="flex gap-2 items-start">
+                          <img
+                            src={ai}
+                            alt="ai"
+                            class="w-12 h-12 object-contain rounded-full flex-shrink-0"
+                          />
+                          <div class="chat-ai flex flex-col items-start gap-2">
+                            {chat.ai === "loading" ? (
+                              <Spinner size="sm" colorScheme="purple" />
+                            ) : (
+                              <div>
+                                {isLastAI ? (
+                                  <AnimatedText text={formatText(chat.ai)} />
+                                ) : (
+                                  <div
+                                    innerHTML={formatText(chat.ai)}
+                                    style={{
+                                      "white-space": "normal",
+                                      "word-wrap": "break-word",
+                                      "line-height": "1.6",
+                                    }}
+                                  />
+                                )}
+
+                                {chatHistory().filter((c) => c.ai).indexOf(chat) > 0 && (
+                                  <div class="pt-6">
+                                    <div>
+                                      Klik tombol Whatsapp dibawah ini untuk bicara langsung
+                                      dengan experties
                                     </div>
-                                  </a>
-                                </div>
-                              )}
-                            </div>
-                          )}
+                                    <a
+                                      href="https://wa.me/6282136326124"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      <div class="redirect-whatsapp inline-block rounded-lg px-3 py-2 text-white bg-[#4F46E5] hover:bg-[#4338CA] transition">
+                                        Chat Whatsapp
+                                      </div>
+                                    </a>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
-                </>
-              )}
+                    )}
+                  </>
+                );
+              }}
             </For>
           </div>
         </PageWrapper>

@@ -131,15 +131,15 @@ const InheritanceTable: Component = () => {
                 <Input value={_cryptoOrSecurities()} onInput={(e: any) => _setCryptoOrSecurities(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
               </div>
               <div class="col-span-3">
-                <p class="text-sm h-[4vh] flex items-end">Additional notes*</p>
-                <Input value={_additionalNotesINHERITANCE()} onInput={(e: any) => _setAdditionalNotesINHERITANCE(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
+                <p class="text-sm h-[2.5vh] flex items-end">Asset Value*</p>
+                <Input inputMode="numeric" value={formatNumber(_assetValue())} type="text" onInput={(e: any) => { const raw = e.currentTarget.value.replace(/\./g, ""); _setAssetValue(raw); }} onKeyPress={(e: KeyboardEvent) => { if (!/[0-9]/.test(e.key)) { e.preventDefault(); } }} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
               </div>
             </div>
             <div class="grid grid-cols-12 gap-6 pt-[3vh]">
               <div class="col-span-4 col-start-5">
                 <div class="flex flex-col items-center">
-                  <p class="text-sm h-[2.5vh] flex items-end">Asset Value*</p>
-                  <Input inputMode="numeric" value={formatNumber(_assetValue())} type="text" onInput={(e: any) => { const raw = e.currentTarget.value.replace(/\./g, ""); _setAssetValue(raw); }} onKeyPress={(e: KeyboardEvent) => { if (!/[0-9]/.test(e.key)) { e.preventDefault(); } }} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
+                  <p class="text-sm h-[4vh] flex items-end">Additional notes*</p>
+                  <Input value={_additionalNotesINHERITANCE()} onInput={(e: any) => _setAdditionalNotesINHERITANCE(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
                 </div>
               </div>
             </div>

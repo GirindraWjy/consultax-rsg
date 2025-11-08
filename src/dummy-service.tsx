@@ -1,17 +1,5 @@
-export const ai_chat = {
-    "reply": "Tentu! Berikut adalah langkah-langkah perhitungan Pajak Penghasilan (PPh) untuk individu di Indonesia, khususnya untuk PPh 21. Saya akan menjelaskan langkah-langkahnya secara umum:\n\n### 1. Menentukan Penghasilan Bruto\nPenghasilan bruto adalah total semua penghasilan yang diterima oleh individu dalam satu tahun pajak. Ini termasuk gaji, tunjangan, bonus, dan penghasilan lainnya.\n\n### 2. Mengurangi Penghasilan Bruto dengan Biaya Jabatan dan Penghasilan Tidak Kena Pajak (PTKP)\n- **Biaya Jabatan**: Untuk karyawan, biaya jabatan adalah 5% dari penghasilan bruto, dengan batas maksimum tertentu (misalnya, Rp 500.000 per bulan).\n- **Penghasilan Tidak Kena Pajak (PTKP)**: Ini adalah jumlah tertentu yang tidak dikenakan pajak. Besarannya tergantung pada status pernikahan dan jumlah tanggungan. Sebagai contoh:\n  - Wajib Pajak Pribadi (TK) : Rp 54.000.000\n  - Wajib Pajak Menikah (K/0) : Rp 58.500.000\n  - Tambahan untuk setiap tanggungan (maksimal 3 tanggungan) : Rp 4.500.000\n\n### 3. Menghitung Penghasilan Kena Pajak (PKP)\nSetelah mengurangi penghasilan bruto dengan biaya jabatan dan PTKP, hasilnya adalah Penghasilan Kena Pajak (PKP):\n\\[ \\text{PKP} = \\text{Penghasilan Bruto} - \\text{Biaya Jabatan} - \\text{PTKP} \\]\n\n### 4. Menghitung Pajak Terutang\nPajak terutang dihitung berdasarkan tarif pajak yang berlaku. Untuk PPh 21, tarifnya progresif. Berikut adalah tarif yang berlaku:\n- 5% untuk PKP sampai dengan Rp 60.000.000\n- 15% untuk PKP di atas Rp 60.000.000 sampai dengan Rp 250.000.000\n- 25% untuk PKP di atas Rp 250.000.000 sampai dengan Rp 500.000.000\n- 30% untuk PKP di atas Rp 500.000.000\n\n### 5. Menghitung Pajak yang Sudah Dipotong\nJika Anda adalah karyawan, pajak yang sudah dipotong oleh perusahaan selama setahun juga harus diperhitungkan. Ini untuk memastikan apakah Anda masih memiliki kewajiban pajak yang harus dibayar atau mungkin mendapatkan restitusi.\n\n### 6. Membayar Pajak\nJika setelah perhitungan, ditemukan pajak terutang, Anda perlu melakukan pembayaran sesuai dengan ketentuan yang berlaku, baik melalui bank atau aplikasi online yang disediakan oleh Direktorat Jenderal Pajak.\n\n### 7. Melaporkan SPT\nSetelah semua perhitungan dan pembayaran dilakukan, wajib pajak harus melaporkan SPT (Surat Pemberitahuan Tahunan) PPh yang sesuai. Ini dapat dilakukan secara online melalui e-filing atau secara manual.\n\n### Contoh Perhitungan\nMisalkan, seorang karyawan dengan penghasilan bruto Rp 100.000.000 setahun, menikah tanpa tanggungan:\n\n1. **Penghasilan Bruto**: Rp 100.000.000\n2. **Biaya Jabatan**: 5% x Rp 100.000.000 = Rp 5.000.000 (maksimal Rp 500.000/bulan)\n3. **PTKP**: Rp 58.500.000\n4. **PKP**: Rp 100.000.000 - Rp 5.000.000 - Rp 58.500.000 = Rp 36.500.000\n5. **Pajak Terutang**: 5% x Rp 36.500.000 = Rp 1.825.000\n\nDemikianlah langkah-langkah perhitungan PPh. Jika ada pertanyaan lebih lanjut atau butuh bantuan khusus, silakan tanyakan!",
-    "model": "meta-llama/llama-3-8b-instruct",
-    "usage": {
-        "prompt_tokens": 41,
-        "completion_tokens": 55,
-        "total_tokens": 96,
-        "prompt_tokens_details": null,
-        "completion_tokens_details": null
-    }
-}
-
 // export const ai_chat = {
-//     "reply": "Something went wrong, please try again",
+//     "reply": "Tentu! Berikut adalah langkah-langkah perhitungan Pajak Penghasilan (PPh) untuk individu di Indonesia, khususnya untuk PPh 21. Saya akan menjelaskan langkah-langkahnya secara umum:\n\n### 1. Menentukan Penghasilan Bruto\nPenghasilan bruto adalah total semua penghasilan yang diterima oleh individu dalam satu tahun pajak. Ini termasuk gaji, tunjangan, bonus, dan penghasilan lainnya.\n\n### 2. Mengurangi Penghasilan Bruto dengan Biaya Jabatan dan Penghasilan Tidak Kena Pajak (PTKP)\n- **Biaya Jabatan**: Untuk karyawan, biaya jabatan adalah 5% dari penghasilan bruto, dengan batas maksimum tertentu (misalnya, Rp 500.000 per bulan).\n- **Penghasilan Tidak Kena Pajak (PTKP)**: Ini adalah jumlah tertentu yang tidak dikenakan pajak. Besarannya tergantung pada status pernikahan dan jumlah tanggungan. Sebagai contoh:\n  - Wajib Pajak Pribadi (TK) : Rp 54.000.000\n  - Wajib Pajak Menikah (K/0) : Rp 58.500.000\n  - Tambahan untuk setiap tanggungan (maksimal 3 tanggungan) : Rp 4.500.000\n\n### 3. Menghitung Penghasilan Kena Pajak (PKP)\nSetelah mengurangi penghasilan bruto dengan biaya jabatan dan PTKP, hasilnya adalah Penghasilan Kena Pajak (PKP):\n\\[ \\text{PKP} = \\text{Penghasilan Bruto} - \\text{Biaya Jabatan} - \\text{PTKP} \\]\n\n### 4. Menghitung Pajak Terutang\nPajak terutang dihitung berdasarkan tarif pajak yang berlaku. Untuk PPh 21, tarifnya progresif. Berikut adalah tarif yang berlaku:\n- 5% untuk PKP sampai dengan Rp 60.000.000\n- 15% untuk PKP di atas Rp 60.000.000 sampai dengan Rp 250.000.000\n- 25% untuk PKP di atas Rp 250.000.000 sampai dengan Rp 500.000.000\n- 30% untuk PKP di atas Rp 500.000.000\n\n### 5. Menghitung Pajak yang Sudah Dipotong\nJika Anda adalah karyawan, pajak yang sudah dipotong oleh perusahaan selama setahun juga harus diperhitungkan. Ini untuk memastikan apakah Anda masih memiliki kewajiban pajak yang harus dibayar atau mungkin mendapatkan restitusi.\n\n### 6. Membayar Pajak\nJika setelah perhitungan, ditemukan pajak terutang, Anda perlu melakukan pembayaran sesuai dengan ketentuan yang berlaku, baik melalui bank atau aplikasi online yang disediakan oleh Direktorat Jenderal Pajak.\n\n### 7. Melaporkan SPT\nSetelah semua perhitungan dan pembayaran dilakukan, wajib pajak harus melaporkan SPT (Surat Pemberitahuan Tahunan) PPh yang sesuai. Ini dapat dilakukan secara online melalui e-filing atau secara manual.\n\n### Contoh Perhitungan\nMisalkan, seorang karyawan dengan penghasilan bruto Rp 100.000.000 setahun, menikah tanpa tanggungan:\n\n1. **Penghasilan Bruto**: Rp 100.000.000\n2. **Biaya Jabatan**: 5% x Rp 100.000.000 = Rp 5.000.000 (maksimal Rp 500.000/bulan)\n3. **PTKP**: Rp 58.500.000\n4. **PKP**: Rp 100.000.000 - Rp 5.000.000 - Rp 58.500.000 = Rp 36.500.000\n5. **Pajak Terutang**: 5% x Rp 36.500.000 = Rp 1.825.000\n\nDemikianlah langkah-langkah perhitungan PPh. Jika ada pertanyaan lebih lanjut atau butuh bantuan khusus, silakan tanyakan!",
 //     "model": "meta-llama/llama-3-8b-instruct",
 //     "usage": {
 //         "prompt_tokens": 41,
@@ -21,3 +9,15 @@ export const ai_chat = {
 //         "completion_tokens_details": null
 //     }
 // }
+
+export const ai_chat = {
+    "reply": "Something went wrong, please try again",
+    "model": "meta-llama/llama-3-8b-instruct",
+    "usage": {
+        "prompt_tokens": 41,
+        "completion_tokens": 55,
+        "total_tokens": 96,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+    }
+}
