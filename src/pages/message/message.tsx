@@ -40,15 +40,46 @@ const MessagePage: Component = () => {
       .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
       .replace(/\*(.*?)\*/g, "<i>$1</i>")
       .replace(/```([\s\S]*?)```/g, (_, code) => {
-        return `<pre style="background:#1e1e1e;color:#f8f8f2;padding:10px;border-radius:6px;overflow-x:auto;"><code>${code.trim()}</code></pre>`;
+        return `
+        <div style="max-width:100%;overflow-x:auto;">
+          <pre style="
+            background:#1e1e1e;
+            color:#f8f8f2;
+            padding:10px;
+            border-radius:6px;
+            white-space:pre-wrap;
+            word-break:break-word;
+            font-family:monospace;
+            line-height:1.4;
+          ">
+            <code>${code.trim()}</code>
+          </pre>
+        </div>`;
       })
-      .replace(/(^|<br\/>)&gt; (.*?)(<br\/>|$)/g, '$1<blockquote style="border-left:4px solid #ccc;margin:6px 0;padding-left:10px;color:#555;">$2</blockquote>$3')
-      .replace(/(?:^|<br\/>)(\d+)\. (.*?)(?=<br\/>|$)/g, '<div style="margin-left:1em;">$1. $2</div>')
-      .replace(/(?:^|<br\/>)\- (.*?)(?=<br\/>|$)/g, '<div style="margin-left:1em;">• $1</div>')
-      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:#4F46E5;">$1</a>')
+      .replace(
+        /(^|<br\/>)&gt; (.*?)(<br\/>|$)/g,
+        '$1<blockquote style="border-left:4px solid #ccc;margin:6px 0;padding-left:10px;color:#555;">$2</blockquote>$3'
+      )
+      .replace(
+        /(?:^|<br\/>)(\d+)\. (.*?)(?=<br\/>|$)/g,
+        '<div style="margin-left:1em; line-height:1.6; vertical-align:middle;">$1. $2</div>'
+      )
+      .replace(
+        /(?:^|<br\/>)\- (.*?)(?=<br\/>|$)/g,
+        '<div style="margin-left:1em; line-height:1.6; vertical-align:middle;">• $1</div>'
+      )
+      .replace(
+        /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:#4F46E5;">$1</a>'
+      )
       .replace(/\|(.+?)\|(<br\/>|$)/g, (_, row) => {
         const cols = row.split("|").map((c: any) => c.trim());
-        const cells = cols.map((c: any) => `<td style="border:1px solid #ccc;padding:4px 8px;">${c}</td>`).join("");
+        const cells = cols
+          .map(
+            (c: any) =>
+              `<td style="border:1px solid #ccc;padding:4px 8px;">${c}</td>`
+          )
+          .join("");
         return `<table style="border-collapse:collapse;margin:6px 0;"><tr>${cells}</tr></table>`;
       })
       .replace(/\\\[([\s\S]*?)\\\]/g, (_, expr) => {
@@ -57,7 +88,6 @@ const MessagePage: Component = () => {
       })
       .replace(/\\n/g, "<br/>");
   }
-
 
   createEffect(() => {
     console.log("jawaban ai:", answer());
