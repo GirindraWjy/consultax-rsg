@@ -7,4 +7,18 @@
   padding: 4vh 3vh 3vh 3vh;
   position: relative;
   overflow: hidden;
+  margin-right: 2.5vw;
+  margin-left: 2.5vw;
+}
+.container-grant-mobile {
+  background-color: white;
+  height: 90vh;
+  width: 100%;
+  box-shadow: 0 6px 4px rgba(126, 126, 126, 0.3);
+  border-radius: 1vw;
+  padding: 4vh 3vh 3vh 3vh;
+  position: relative;
+  overflow: hidden;
+  margin-right: 6vw;
+  margin-left: 6vw;
 }

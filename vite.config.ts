@@ -10,5 +10,12 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
+    commonjsOptions: {
+      transformMixedEsModules: true, // handle modul campuran ESM + CJS
+      include: [/node_modules/], // pastikan semua CJS boleh di-transform
+    },
+  },
+  optimizeDeps: {
+    include: ['debug', 'extend'], // tambahkan modul problematik
   },
 });

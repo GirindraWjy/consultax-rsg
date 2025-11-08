@@ -90,31 +90,96 @@ export const consultaxService = {
       return ai_chat;
     }
   },
-  
 
+  getAIMsgGRANTS: async (
+    name: any,
+    npwpStatus: any,
+    NoD: any,
+    maritalStatus: any,
+    jobs: any,
+    typeOfIncome: any,
+    sourceOfIncome: any,
+    relationWithGrantor: any,
+    assetType: any,
+    assetValue: any,
+    dataReceived: any,
+    addNotes: any,
+  ) => {
+    const url = `${urlToBE}/grantschat`;
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          npwpStatus,
+          NoD,
+          maritalStatus,
+          jobs,
+          typeOfIncome,
+          sourceOfIncome,
+          relationWithGrantor,
+          assetType,
+          assetValue,
+          dataReceived,
+          addNotes
+        }),
+      });
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+      return ai_chat;
+    }
+  },
+
+  getAIMsgInheritance: async (
+    nameOfDeceased: any,
+    npwpOfDeceased: any,
+    unpaidTaxes: any,
+    nameOfHeirs: any,
+    npwpOfHeirs: any,
+    typeOfInheritance: any,
+    titleTransferred: any,
+    cashReported: any,
+    businessIncome: any,
+    assetSold: any,
+    foreignAssets: any,
+    reportedInSPT: any,
+    testamentaryGift: any,
+    cryptoOrSecurities: any,
+    assetValue: any,
+    additionalNotes: any,
+  ) => {
+    const url = `${urlToBE}/inheritanceschat`;
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nameOfDeceased,
+          npwpOfDeceased,
+          unpaidTaxes,
+          nameOfHeirs,
+          npwpOfHeirs,
+          typeOfInheritance,
+          titleTransferred,
+          cashReported,
+          businessIncome,
+          assetSold,
+          foreignAssets,
+          reportedInSPT,
+          testamentaryGift,
+          cryptoOrSecurities,
+          assetValue,
+          additionalNotes
+        }),
+      });
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+      return ai_chat;
+    }
+  },
 };
-
-// {
-//     "name": "Andika Pratama",
-//     "npwp": "Terdaftar",
-//     "numberOfDependents": 2,
-//     "maritalStatus": "Menikah",
-//     "jobs": "Karyawan Swasta",
-//     "salaryPerMonthOrDay": 12000000,
-//     "allowances": 2500000,
-//     "runBusiness": false,
-//     "professionalIncome": 0,
-//     "rentalIncome": 15000000,
-//     "dividend": 5000000,
-//     "foreignIncome": 0,
-//     "assetSold": 0,
-//     "prize": 2000000,
-//     "donation": 1000000,
-//     "pensionContribution": 600000,
-//     "jobExpenses": 5,
-//     "officialContribution": 200000,
-//     "withheldTax": 18000000,
-//     "installmentPayments": 0,
-//     "royalties": 3000000,
-//     "additionalNotes": "Penghasilan dari sewa properti rumah pribadi selama 6 bulan dan menerima dividen dari saham perusahaan lokal. Tidak memiliki penghasilan luar negeri."
-// }

@@ -27,10 +27,10 @@ const Home: Component = () => {
     <PageWrapper>
       {/* DESKTOP VERSION */}
       <div class="pl-[10vw] pt-[10vh] font-[Plus_Jakarta_Sans] hidden md:block">
-        <div class="home-title text-6xl inline-block bg-[linear-gradient(135deg,#000000_0%,#FFCF27_45%,#4C3CE3_100%)] bg-clip-text text-transparent">
+        <div class="home-title text-4xl inline-block bg-[linear-gradient(135deg,#000000_0%,#FFCF27_45%,#4C3CE3_100%)] bg-clip-text text-transparent">
           Hi There, What <br /> do you want to know about taxes?
         </div>
-        <div class="sub-header text-xl text-black/80 pt-[3vh]">
+        <div class="sub-header text-md text-black/80 pt-[3vh]">
           An AI tax assistant that helps you understand income tax rules, calculates liabilities, <br />
           and provides practical guidance based on the latest regulations.
         </div>
@@ -38,28 +38,26 @@ const Home: Component = () => {
         <div class="flex gap-10">
           <a href="/pph">
             <div class="card-menu">
-              <div class="text-md px-4 pt-2 font-medium font-[Plus_Jakarta_Sans]">
+              <div class="text-sm px-4 pb-2 pt-2 font-medium font-[Plus_Jakarta_Sans] flex flex-col justify-between">
                 Display the PPh tax calculation table
-                <img src={wallet} alt="" class="img-card h-12 w-12 relative top-10" />
-                <div class="img-card-shadow">
-                </div>
+                <img src={wallet} alt="" class="img-card h-10 w-10 " />
               </div>
             </div>
           </a>
           <a href="/grant-tax">
             <div class="card-menu">
-              <div class="text-md px-4 pt-2 font-medium font-[Plus_Jakarta_Sans]">
+              <div class="text-sm px-4 pb-2 pt-2 font-medium font-[Plus_Jakarta_Sans] flex flex-col justify-between">
                 Display the Grants tax calculation table
-                <img src={abacus} alt="" class="img-card h-12 w-12 relative top-10" />
+                <img src={abacus} alt="" class="img-card h-12 w-12 " />
               </div>
             </div>
           </a>
           <a href="/inheritance-tax">
             <div class="card-menu">
-              <div class="text-md px-4 pt-2 font-medium font-[Plus_Jakarta_Sans]">
+              <div class="text-sm px-4 pb-2 pt-2 font-medium font-[Plus_Jakarta_Sans] flex flex-col justify-between">
                 Display the Inheritances tax calculation table
                 <div>
-                  <img src={abacus} alt="" class="img-card h-12 w-12 relative top-10" />
+                  <img src={abacus} alt="" class="img-card h-12 w-12" />
                 </div>
               </div>
             </div>
@@ -83,11 +81,11 @@ const Home: Component = () => {
                 background: "white",
                 "border-radius": "2vh",
                 "box-shadow": "0 4px 6px rgba(76, 60, 227, 0.4)",
-                "padding-left": "1rem",
+                "padding-left": "5vh",
               }}
-              height="13vh"
+              height="12vh"
               _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none" }}
-              placeholder="      tell your problem now..."
+              placeholder="tell your problem now..."
             />
             <InputRightElement
               class="send-msg"
@@ -109,7 +107,7 @@ const Home: Component = () => {
 
       {/* MOBILE VERSION */}
       <div class="p-4 pt-30 font-[Plus_Jakarta_Sans] block md:hidden">
-        <div class="home-title text-center text-2xl inline-block bg-[linear-gradient(135deg,#000000_0%,#FFCF27_45%,#4C3CE3_100%)] bg-clip-text text-transparent">
+        <div class="home-title w-full text-center text-2xl inline-block bg-[linear-gradient(135deg,#000000_0%,#FFCF27_45%,#4C3CE3_100%)] bg-clip-text text-transparent">
           Hi There, What <br /> do you want to know about taxes?
         </div>
         <div class="text-[12px] text-black/80 pt-[1vh] text-center">

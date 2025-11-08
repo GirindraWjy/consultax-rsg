@@ -7,6 +7,9 @@ import sendIcon from "../../assets/png/send-icon.png"
 import PageWrapper from "../wrapper/wrapper";
 import { consultaxService } from "../../service";
 import { Spinner } from "@hope-ui/solid";
+import { SolidMarkdown } from "solid-markdown";
+import remarkGfm from "remark-gfm";
+import { marked } from "marked";
 
 import {
   _sendMsg as sendMsg,
@@ -23,6 +26,13 @@ import {
 
 const MessagePage: Component = () => {
 
+  function formatText(raw: string) {
+    return raw
+      .replace(/\n(\d+\.)/g, "<br/>$1")
+      .replace(/\n/g, "<br/>")
+      .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
+      .replace(/\*(.*?)\*/g, "<i>$1</i>")
+  }
 
   createEffect(() => {
     console.log("jawaban ai:", answer());
@@ -30,15 +40,15 @@ const MessagePage: Component = () => {
 
   return (
     <div class="font-[Plus_Jakarta_Sans]">
-      <div class="pl-[10vw] pe-[10vw] pt-10 hidden md:block">
+      <div class="pl-[8vw] pe-[8vw] hidden md:block">
         <PageWrapper>
-          <div class="chat-container pb-40">
+          <div class="chat-container pt-10 pb-40">
             <For each={chatHistory()} fallback={<div>Ask Anything with AI</div>}>
               {(chat, idx) => (
                 <>
                   {chat.user && (
                     <div class="chat-item flex justify-end items-start gap-3">
-                      <div class="chat-user"  style={{ "white-space": "pre-wrap" }}>{chat.user}</div>
+                      <div class="chat-user" style={{ "white-space": "pre-wrap" }}>{chat.user}</div>
                       <img src={user} alt="user" class="w-12 h-12 object-contain rounded-full flex-shrink-0"
                       />
                     </div>
@@ -54,19 +64,29 @@ const MessagePage: Component = () => {
                             <Spinner size="sm" colorScheme="purple" />
                           ) : (
                             <div>
-                              <div>
-                                {chat.ai}
-                              </div>
+                              <div
+                                innerHTML={formatText(chat.ai)}
+                                style={{
+                                  "white-space": "normal",
+                                  "word-wrap": "break-word",
+                                  "line-height": "1.6",
+                                }}
+                              />
                               {chatHistory().filter(c => c.ai).indexOf(chat) > 0 && (
-                                <a
-                                  href="https://wa.me/62882003076795"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <div class="redirect-whatsapp inline-block rounded-lg px-3 py-2 text-white bg-[#4F46E5] hover:bg-[#4338CA] transition">
-                                    Chat Whatsapp
+                                <div class="pt-6">
+                                  <div>
+                                    Klik tombol Whatsapp dibawah ini untuk bicara langsung dengan experties
                                   </div>
-                                </a>
+                                  <a
+                                    href="https://wa.me/62882003076795"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    <div class="redirect-whatsapp inline-block rounded-lg px-3 py-2 text-white bg-[#4F46E5] hover:bg-[#4338CA] transition">
+                                      Chat Whatsapp
+                                    </div>
+                                  </a>
+                                </div>
                               )}
                             </div>
                           )}
@@ -79,7 +99,7 @@ const MessagePage: Component = () => {
             </For>
           </div>
         </PageWrapper>
-        <div class="fixed w-[75%] bottom-20">
+        <div class="fixed w-[80%] bottom-20">
           <InputGroup>
             <Input
               value={sendMsg()}
@@ -116,14 +136,14 @@ const MessagePage: Component = () => {
             </InputRightElement>
           </InputGroup>
         </div>
-      </div>
+      </div >
 
 
       {/* MOBILE */}
 
-      <div class="block md:hidden">
+      < div class="block md:hidden" >
         <PageWrapper>
-          <div class="chat-container pt-20 text-sm">
+          <div class="chat-container pt-20 pb-26 text-sm">
             <For each={chatHistory()} fallback={<div class="flex justify-center items-center w-full">Ask Anything with AI</div>}>
               {(chat, idx) => (
                 <>
@@ -149,15 +169,20 @@ const MessagePage: Component = () => {
                                 {chat.ai}
                               </div>
                               {chatHistory().filter(c => c.ai).indexOf(chat) > 0 && (
-                                <a
-                                  href="https://wa.me/62882003076795"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <div class="text-sm redirect-whatsapp inline-block rounded-lg px-2 py-2 text-white bg-[#4F46E5] hover:bg-[#4338CA] transition">
-                                    Chat Whatsapp
+                                <div class="pt-6">
+                                  <div>
+                                    Klik tombol Whatsapp dibawah ini untuk bicara langsung dengan experties
                                   </div>
-                                </a>
+                                  <a
+                                    href="https://wa.me/62882003076795"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    <div class="redirect-whatsapp inline-block rounded-lg px-3 py-2 text-white bg-[#4F46E5] hover:bg-[#4338CA] transition">
+                                      Chat Whatsapp
+                                    </div>
+                                  </a>
+                                </div>
                               )}
                             </div>
                           )}
@@ -170,7 +195,7 @@ const MessagePage: Component = () => {
             </For>
           </div>
         </PageWrapper>
-        <div class="fixed w-full px-4 bottom-20">
+        <div class="fixed w-full px-4 bottom-10">
           <InputGroup>
             <Input
               value={sendMsg()}
@@ -207,8 +232,8 @@ const MessagePage: Component = () => {
             </InputRightElement>
           </InputGroup>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

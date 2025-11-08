@@ -56,7 +56,7 @@ const Sidebar: Component = () => {
   return (
     <div>
       {/* DESKTOP SIDEBAR */}
-      <div class="hidden md:flex container-sidebar h-full flex-col items-center gap-8 px-2">
+      <div class="hidden md:flex container-sidebar h-full flex-col items-center pt-6 gap-3 px-4">
         <a href="/home">
           <img src={logo} alt="logo" class="logo-img w-9 h-9" />
         </a>
@@ -100,7 +100,7 @@ const Sidebar: Component = () => {
           exitToClass="-translate-x-full"
         >
           <Show when={open()}>
-            <div class="fixed top-0 left-0 flex flex-col gap-2 w-60 h-full bg-white shadow-lg z-50 p-2">
+            <div class="fixed top-0 pt-20 left-0 flex flex-col gap-2 w-60 h-full bg-white shadow-lg z-50 p-2">
               <a href="/home">
                 <div class="menu-sidebar" onClick={() => setOpen(false)}>
                   <img
