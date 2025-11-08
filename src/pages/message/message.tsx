@@ -78,7 +78,7 @@ const MessagePage: Component = () => {
                                     Klik tombol Whatsapp dibawah ini untuk bicara langsung dengan experties
                                   </div>
                                   <a
-                                    href="https://wa.me/62882003076795"
+                                    href="https://wa.me/6282136326124"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                   >
@@ -174,7 +174,7 @@ const MessagePage: Component = () => {
                                     Klik tombol Whatsapp dibawah ini untuk bicara langsung dengan experties
                                   </div>
                                   <a
-                                    href="https://wa.me/62882003076795"
+                                    href="https://wa.me/6282136326124"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                   >
