@@ -7,6 +7,7 @@ import "./inheritance-tax.css";
 import send from "../../assets/png/send-icon.png"
 import kiri from "../../assets/png/gambar kiri.png"
 import kanan from "../../assets/png/gambar kanan.png"
+import balik from "../../assets/png/arrow.png"
 import PageWrapper from "../wrapper/wrapper";
 import { _additionalNotesINHERITANCE, _assetSoldINHERITANCE, _assetValue, _businessIncome, _cashReported, _cryptoOrSecurities, _foreignAssets, _nameOfDeceased, _nameOfHeirs, _npwpOfDeceased, _npwpOfHeirs, _reportedInSPT, _setAdditionalNotesINHERITANCE, _setAssetSoldINHERITANCE, _setAssetValue, _setBusinessIncome, _setCashReported, _setCryptoOrSecurities, _setForeignAssets, _setNameOfDeceased, _setNameOfHeirs, _setNpwpOfDeceased, _setNpwpOfHeirs, _setReportedInSPT, _setTestamentaryGift, _setTitleTransferred, _setTypeOfInheritance, _setUnpaidTaxes, _testamentaryGift, _titleTransferred, _typeOfInheritance, _unpaidTaxes, getDataINHERITANCE } from "../../store/store";
 import { notificationService } from "@hope-ui/solid";
@@ -50,7 +51,8 @@ const InheritanceTable: Component = () => {
           <div class="w-full flex justify-between">
             <a href="/home">
               <div class="flex items-center gap-3">
-                <Icon as={AiFillCaretLeft} color="$neutral10" />
+                {/* <Icon as={AiFillCaretLeft} color="$neutral10" /> */}
+                <img src={balik} class="w-4 h-4" alt="" />
                 <div class="font-semibold">Tabel of Inheritance</div>
               </div>
             </a>
@@ -156,7 +158,8 @@ const InheritanceTable: Component = () => {
           <div class="w-full flex justify-between">
             <a href="/home">
               <div class="flex items-center gap-3">
-                <Icon as={AiFillCaretLeft} color="$neutral10" />
+                {/* <Icon as={AiFillCaretLeft} color="$neutral10" /> */}
+                <img src={balik} class="w-4 h-4" alt="" />
                 <div class="font-semibold">Tabel of Inheritance</div>
               </div>
             </a>

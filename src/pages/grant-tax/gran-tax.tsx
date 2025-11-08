@@ -1,6 +1,7 @@
 import type { Component } from "solid-js";
 import { Input, InputGroup, InputRightElement } from "@hope-ui/solid";
 import "./grant-tax.css";
+import balik from "../../assets/png/arrow.png"
 import PageWrapper from "../wrapper/wrapper";
 import { Icon } from "@hope-ui/solid";
 import { AiFillCaretLeft } from "solid-icons/ai";
@@ -53,7 +54,8 @@ const GrantTax: Component = () => {
           <div class="w-full flex justify-between">
             <a href="/home">
               <div class="flex items-center gap-3">
-                <Icon as={AiFillCaretLeft} color="$neutral10" />
+                {/* <Icon as={AiFillCaretLeft} color="$neutral10" /> */}
+                <img src={balik} class="w-4 h-4" alt="" />
                 <div class="font-semibold">Tabel of Grants</div>
               </div>
             </a>
@@ -141,7 +143,8 @@ const GrantTax: Component = () => {
           <div class="w-full flex justify-between">
             <a href="/home">
               <div class="flex items-center gap-3">
-                <Icon as={AiFillCaretLeft} color="$neutral10" />
+                {/* <Icon as={AiFillCaretLeft} color="$neutral10" /> */}
+                <img src={balik} class="w-4 h-4" alt="" />
                 <div class="font-semibold">Tabel of Grants</div>
               </div>
             </a>

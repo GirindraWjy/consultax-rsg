@@ -29,21 +29,35 @@ const MessagePage: Component = () => {
 
   function formatText(raw: string) {
     return raw
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
       .replace(/\n{2,}/g, "<br/><br/>")
       .replace(/\n/g, "<br/>")
       .replace(/### (.*?)(<br\/>|$)/g, "<h3>$1</h3>")
       .replace(/## (.*?)(<br\/>|$)/g, "<h2>$1</h2>")
       .replace(/# (.*?)(<br\/>|$)/g, "<h1>$1</h1>")
+      .replace(/\*\*\*(.*?)\*\*\*/g, "<b><i>$1</i></b>")
       .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
       .replace(/\*(.*?)\*/g, "<i>$1</i>")
-      .replace(/<br\/>(\d+\.)/g, "<br/><br/>$1")
-      .replace(/- (.*?)(<br\/>|$)/g, "• $1<br/>")
-      .replace(/\\n/g, "<br/>")
+      .replace(/```([\s\S]*?)```/g, (_, code) => {
+        return `<pre style="background:#1e1e1e;color:#f8f8f2;padding:10px;border-radius:6px;overflow-x:auto;"><code>${code.trim()}</code></pre>`;
+      })
+      .replace(/(^|<br\/>)&gt; (.*?)(<br\/>|$)/g, '$1<blockquote style="border-left:4px solid #ccc;margin:6px 0;padding-left:10px;color:#555;">$2</blockquote>$3')
+      .replace(/(?:^|<br\/>)(\d+)\. (.*?)(?=<br\/>|$)/g, '<div style="margin-left:1em;">$1. $2</div>')
+      .replace(/(?:^|<br\/>)\- (.*?)(?=<br\/>|$)/g, '<div style="margin-left:1em;">• $1</div>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:#4F46E5;">$1</a>')
+      .replace(/\|(.+?)\|(<br\/>|$)/g, (_, row) => {
+        const cols = row.split("|").map((c: any) => c.trim());
+        const cells = cols.map((c: any) => `<td style="border:1px solid #ccc;padding:4px 8px;">${c}</td>`).join("");
+        return `<table style="border-collapse:collapse;margin:6px 0;"><tr>${cells}</tr></table>`;
+      })
       .replace(/\\\[([\s\S]*?)\\\]/g, (_, expr) => {
         const cleaned = expr.replace(/\\text\{(.*?)\}/g, "$1");
-        return `<div style="font-family: monospace; background:#f9f9f9; padding:6px 10px; border-radius:6px; display:inline-block;">${cleaned}</div>`;
+        return `<div style="font-family:monospace;background:#f9f9f9;padding:6px 10px;border-radius:6px;display:inline-block;">${cleaned}</div>`;
       })
+      .replace(/\\n/g, "<br/>");
   }
+
 
   createEffect(() => {
     console.log("jawaban ai:", answer());

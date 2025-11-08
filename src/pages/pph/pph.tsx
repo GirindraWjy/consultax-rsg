@@ -5,6 +5,7 @@ import PageWrapper from "../wrapper/wrapper";
 import { Icon } from "@hope-ui/solid";
 import { AiFillCaretLeft } from "solid-icons/ai";
 import send from "../../assets/png/send-icon.png"
+import balik from "../../assets/png/arrow.png"
 import kiri from "../../assets/png/gambar kiri.png"
 import kanan from "../../assets/png/gambar kanan.png"
 import { _additialNotes, _allowances, _assetSold, _dependents, _dividend, _donation, _foreignIncome, _installmentPayments, _jobExpenses, _jobs, _marital, _name, _npwp, _officialContribution, _pensionContribution, _prize, _proIncome, _rentalIncome, _royalties, _runBusiness, _salary, _setAdditionalNotes, _setAllowances, _setAssetSold, _setDependents, _setDividend, _setDonation, _setForeignIncome, _setInstallmentPayments, _setJobExpenses, _setJobs, _setMarital, _setName, _setNPWP, _setOfficialContribution, _setPentionContribution, _setPrize, _setProIncome, _setRentalIncome, _setRoyalties, _setRunBusiness, _setSalary, _setWithHeldTax, _withHeldTax, getDataPPH } from "../../store/store";
@@ -48,7 +49,8 @@ const PPH: Component = () => {
           <div class="w-full flex justify-between">
             <a href="/home">
               <div class="flex items-center gap-3">
-                <Icon as={AiFillCaretLeft} color="$neutral10" />
+                {/* <Icon as={AiFillCaretLeft} color="$neutral10" /> */}
+                <img src={balik} class="w-4 h-4" alt="" />
                 <div class="font-semibold">Income Tax Table</div>
               </div>
             </a>
@@ -178,7 +180,8 @@ const PPH: Component = () => {
           <div class="w-full flex justify-between">
             <a href="/home">
               <div class="flex items-center gap-3">
-                <Icon as={AiFillCaretLeft} color="$neutral10" />
+                {/* <Icon as={AiFillCaretLeft} color="$neutral10" /> */}
+                <img src={balik} class="w-4 h-4" alt="" />
                 <div class="font-semibold">Income Tax Table</div>
               </div>
             </a>
