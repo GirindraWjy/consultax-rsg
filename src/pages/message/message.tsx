@@ -22,6 +22,7 @@ import {
   _setAnswer as setAnswer,
   getData
 } from "../../store/store";
+import { AnimatedText } from "../../partial/animatedtext";
 
 
 const MessagePage: Component = () => {
@@ -39,9 +40,9 @@ const MessagePage: Component = () => {
       .replace(/- (.*?)(<br\/>|$)/g, "• $1<br/>")
       .replace(/\\n/g, "<br/>")
       .replace(/\\\[([\s\S]*?)\\\]/g, (_, expr) => {
-      const cleaned = expr.replace(/\\text\{(.*?)\}/g, "$1");
-      return `<div style="font-family: monospace; background:#f9f9f9; padding:6px 10px; border-radius:6px; display:inline-block;">${cleaned}</div>`;
-    })
+        const cleaned = expr.replace(/\\text\{(.*?)\}/g, "$1");
+        return `<div style="font-family: monospace; background:#f9f9f9; padding:6px 10px; border-radius:6px; display:inline-block;">${cleaned}</div>`;
+      })
   }
 
   createEffect(() => {
@@ -74,14 +75,15 @@ const MessagePage: Component = () => {
                             <Spinner size="sm" colorScheme="purple" />
                           ) : (
                             <div>
-                              <div
+                              {/* <div
                                 innerHTML={formatText(chat.ai)}
                                 style={{
                                   "white-space": "normal",
                                   "word-wrap": "break-word",
                                   "line-height": "1.6",
                                 }}
-                              />
+                              /> */}
+                              <AnimatedText text={formatText(chat.ai)} />
                               {chatHistory().filter(c => c.ai).indexOf(chat) > 0 && (
                                 <div class="pt-6">
                                   <div>
@@ -176,14 +178,15 @@ const MessagePage: Component = () => {
                             <Spinner size="sm" colorScheme="purple" />
                           ) : (
                             <div>
-                              <div
+                              {/* <div
                                 innerHTML={formatText(chat.ai)}
                                 style={{
                                   "white-space": "normal",
                                   "word-wrap": "break-word",
                                   "line-height": "1.6",
                                 }}
-                              />
+                              /> */}
+                              <AnimatedText text={formatText(chat.ai)} />
                               {chatHistory().filter(c => c.ai).indexOf(chat) > 0 && (
                                 <div class="pt-6">
                                   <div>
