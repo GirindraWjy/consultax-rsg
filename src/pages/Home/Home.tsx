@@ -82,6 +82,7 @@ const Home: Component = () => {
                 "border-radius": "2vh",
                 "box-shadow": "0 4px 6px rgba(76, 60, 227, 0.4)",
                 "padding-left": "5vh",
+                "padding-right": "8vh"
               }}
               height="12vh"
               _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none" }}

@@ -30,6 +30,7 @@ export function AnimatedText(props: AnimatedTextProps) {
         "white-space": "normal",
         "word-wrap": "break-word",
         "line-height": "1.6",
+        "width": "62vw"
       }}
     />
   );
