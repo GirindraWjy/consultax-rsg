@@ -28,10 +28,20 @@ const MessagePage: Component = () => {
 
   function formatText(raw: string) {
     return raw
-      .replace(/\n(\d+\.)/g, "<br/>$1")
+      .replace(/\n{2,}/g, "<br/><br/>")
       .replace(/\n/g, "<br/>")
+      .replace(/### (.*?)(<br\/>|$)/g, "<h3>$1</h3>")
+      .replace(/## (.*?)(<br\/>|$)/g, "<h2>$1</h2>")
+      .replace(/# (.*?)(<br\/>|$)/g, "<h1>$1</h1>")
       .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
       .replace(/\*(.*?)\*/g, "<i>$1</i>")
+      .replace(/<br\/>(\d+\.)/g, "<br/><br/>$1")
+      .replace(/- (.*?)(<br\/>|$)/g, "• $1<br/>")
+      .replace(/\\n/g, "<br/>")
+      .replace(/\\\[([\s\S]*?)\\\]/g, (_, expr) => {
+      const cleaned = expr.replace(/\\text\{(.*?)\}/g, "$1");
+      return `<div style="font-family: monospace; background:#f9f9f9; padding:6px 10px; border-radius:6px; display:inline-block;">${cleaned}</div>`;
+    })
   }
 
   createEffect(() => {
@@ -115,6 +125,7 @@ const MessagePage: Component = () => {
                 background: "white",
                 "border-radius": "2vh",
                 "box-shadow": "0 4px 6px rgba(76, 60, 227, 0.4)",
+                "padding-right": "10vh",
               }}
               height="8vh"
               _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none" }}
@@ -165,9 +176,14 @@ const MessagePage: Component = () => {
                             <Spinner size="sm" colorScheme="purple" />
                           ) : (
                             <div>
-                              <div>
-                                {chat.ai}
-                              </div>
+                              <div
+                                innerHTML={formatText(chat.ai)}
+                                style={{
+                                  "white-space": "normal",
+                                  "word-wrap": "break-word",
+                                  "line-height": "1.6",
+                                }}
+                              />
                               {chatHistory().filter(c => c.ai).indexOf(chat) > 0 && (
                                 <div class="pt-6">
                                   <div>
@@ -211,6 +227,7 @@ const MessagePage: Component = () => {
                 background: "white",
                 "border-radius": "1.5 vh",
                 "box-shadow": "0 4px 6px rgba(76, 60, 227, 0.4)",
+                "padding-right": "6vh",
               }}
               height="6vh"
               _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none" }}

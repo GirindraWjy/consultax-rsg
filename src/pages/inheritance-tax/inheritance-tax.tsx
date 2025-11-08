@@ -8,7 +8,7 @@ import send from "../../assets/png/send-icon.png"
 import kiri from "../../assets/png/gambar kiri.png"
 import kanan from "../../assets/png/gambar kanan.png"
 import PageWrapper from "../wrapper/wrapper";
-import { _additionalNotesINHERITANCE, _assetSoldINHERITANCE, _businessIncome, _cashReported, _cryptoOrSecurities, _foreignAssets, _nameOfDeceased, _nameOfHeirs, _npwpOfDeceased, _npwpOfHeirs, _reportedInSPT, _setAdditionalNotesINHERITANCE, _setAssetSoldINHERITANCE, _setBusinessIncome, _setCashReported, _setCryptoOrSecurities, _setForeignAssets, _setNameOfDeceased, _setNameOfHeirs, _setNpwpOfDeceased, _setNpwpOfHeirs, _setReportedInSPT, _setTestamentaryGift, _setTitleTransferred, _setTypeOfInheritance, _setUnpaidTaxes, _testamentaryGift, _titleTransferred, _typeOfInheritance, _unpaidTaxes, getDataINHERITANCE } from "../../store/store";
+import { _additionalNotesINHERITANCE, _assetSoldINHERITANCE, _assetValue, _businessIncome, _cashReported, _cryptoOrSecurities, _foreignAssets, _nameOfDeceased, _nameOfHeirs, _npwpOfDeceased, _npwpOfHeirs, _reportedInSPT, _setAdditionalNotesINHERITANCE, _setAssetSoldINHERITANCE, _setAssetValue, _setBusinessIncome, _setCashReported, _setCryptoOrSecurities, _setForeignAssets, _setNameOfDeceased, _setNameOfHeirs, _setNpwpOfDeceased, _setNpwpOfHeirs, _setReportedInSPT, _setTestamentaryGift, _setTitleTransferred, _setTypeOfInheritance, _setUnpaidTaxes, _testamentaryGift, _titleTransferred, _typeOfInheritance, _unpaidTaxes, getDataINHERITANCE } from "../../store/store";
 import { notificationService } from "@hope-ui/solid";
 import { useNavigate } from "@solidjs/router";
 
@@ -29,6 +29,7 @@ const InheritanceTable: Component = () => {
       !_typeOfInheritance().trim() ||
       !_reportedInSPT().trim() ||
       !_testamentaryGift().trim() ||
+      !_assetValue().trim() ||
       !_additionalNotesINHERITANCE().trim()
     ) {
       notificationService.show({
@@ -134,6 +135,14 @@ const InheritanceTable: Component = () => {
                 <Input value={_additionalNotesINHERITANCE()} onInput={(e: any) => _setAdditionalNotesINHERITANCE(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
               </div>
             </div>
+            <div class="grid grid-cols-12 gap-6 pt-[3vh]">
+              <div class="col-span-4 col-start-5">
+                <div class="flex flex-col items-center">
+                  <p class="text-sm h-[2.5vh] flex items-end">Asset Value*</p>
+                  <Input inputMode="numeric" value={formatNumber(_assetValue())} type="text" onInput={(e: any) => { const raw = e.currentTarget.value.replace(/\./g, ""); _setAssetValue(raw); }} onKeyPress={(e: KeyboardEvent) => { if (!/[0-9]/.test(e.key)) { e.preventDefault(); } }} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="absolute bottom-0 left-0 w-full flex justify-between z-0 pointer-events-none">
@@ -224,6 +233,10 @@ const InheritanceTable: Component = () => {
               <div>
                 <p class="text-xs h-[4vh] flex items-end">Additional notes*</p>
                 <Input value={_additionalNotesINHERITANCE()} onInput={(e: any) => _setAdditionalNotesINHERITANCE(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
+              </div>
+              <div>
+                <p class="text-xs h-[4vh] flex items-end">Asset Value*</p>
+                <Input inputMode="numeric" value={formatNumber(_assetValue())} type="text" onInput={(e: any) => { const raw = e.currentTarget.value.replace(/\./g, ""); _setAssetValue(raw); }} onKeyPress={(e: KeyboardEvent) => { if (!/[0-9]/.test(e.key)) { e.preventDefault(); } }} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
               </div>
             </div>
           </div>

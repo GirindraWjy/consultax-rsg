@@ -27,7 +27,7 @@ const Home: Component = () => {
     <PageWrapper>
       {/* DESKTOP VERSION */}
       <div class="pl-[10vw] pt-[10vh] font-[Plus_Jakarta_Sans] hidden md:block">
-        <div class="home-title text-4xl inline-block bg-[linear-gradient(135deg,#000000_0%,#FFCF27_45%,#4C3CE3_100%)] bg-clip-text text-transparent">
+        <div class="home-title text-5xl inline-block bg-[linear-gradient(135deg,#000000_0%,#FFCF27_45%,#4C3CE3_100%)] bg-clip-text text-transparent">
           Hi There, What <br /> do you want to know about taxes?
         </div>
         <div class="sub-header text-md text-black/80 pt-[3vh]">

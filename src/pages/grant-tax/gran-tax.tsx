@@ -8,7 +8,7 @@ import send from "../../assets/png/send-icon.png"
 import kiri from "../../assets/png/gambar kiri.png"
 import kanan from "../../assets/png/gambar kanan.png"
 import { notificationService } from "@hope-ui/solid";
-import { _addNotesGRANTS, _assetTypeGRANTS, _assetValueGRANTS, _dataReceivedGRANTS, _jobGRANTS, _maritalGRANTS, _nameGRANTS, _nodGRANTS, _npwpGRANTS, _setAddNoteGRANTS, _setAssetTypeGRANTS, _setAssetValueGRANTS, _setDataReceivedGRANTS, _setJobGRANTS, _setMaritalGRANTS, _setNameGRANTS, _setNODGRANTS, _setNPWPGRANTS, _setSourceIncomeGRANTS, _setTypeIncomeGRANTS, _sourceIncomeGRANTS, _typeIncomeGRANTS, getDataGRANTS } from "../../store/store";
+import { _addNotesGRANTS, _assetTypeGRANTS, _assetValueGRANTS, _dataReceivedGRANTS, _jobGRANTS, _maritalGRANTS, _nameGRANTS, _nodGRANTS, _npwpGRANTS, _relationsGRANTS, _setAddNoteGRANTS, _setAssetTypeGRANTS, _setAssetValueGRANTS, _setDataReceivedGRANTS, _setJobGRANTS, _setMaritalGRANTS, _setNameGRANTS, _setNODGRANTS, _setNPWPGRANTS, _setRelationGRANTS, _setSourceIncomeGRANTS, _setTypeIncomeGRANTS, _sourceIncomeGRANTS, _typeIncomeGRANTS, getDataGRANTS } from "../../store/store";
 import { useNavigate } from "@solidjs/router";
 
 const GrantTax: Component = () => {
@@ -31,6 +31,7 @@ const GrantTax: Component = () => {
       !_assetValueGRANTS().trim() ||
       !_dataReceivedGRANTS().trim() ||
       !_addNotesGRANTS().trim() ||
+      !_relationsGRANTS().trim() ||
       !_typeIncomeGRANTS().trim()
     ) {
       notificationService.show({
@@ -115,8 +116,16 @@ const GrantTax: Component = () => {
                 <Input value={_dataReceivedGRANTS()} onInput={(e: any) => _setDataReceivedGRANTS(e.currentTarget.value)} type="date" style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
               </div>
               <div class="col-span-3">
-                <p class="text-sm h-[2.5vh] flex items-end">Additional Notes*</p>
-                <Input value={_addNotesGRANTS()} onInput={(e: any) => _setAddNoteGRANTS(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
+                <p class="text-sm h-[2.5vh] flex items-end">Relations with Grantor*</p>
+                <Input value={_relationsGRANTS()} onInput={(e: any) => _setRelationGRANTS(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
+              </div>
+            </div>
+            <div class="grid grid-cols-12 gap-6 pt-[3vh]">
+              <div class="col-span-4 col-start-5">
+                <div class="flex flex-col items-center">
+                  <p class="text-sm h-[2.5vh] flex items-end">Additional Notes*</p>
+                  <Input value={_addNotesGRANTS()} onInput={(e: any) => _setAddNoteGRANTS(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
+                </div>
               </div>
             </div>
           </div>
@@ -184,11 +193,15 @@ const GrantTax: Component = () => {
               </div>
               <div>
                 <p class="text-xs h-[2.5vh] flex items-end">Asset Value*</p>
-                <Input inputMode="numeric" value={formatNumber(_assetValueGRANTS())} type="text" onInput={(e: any) => { const raw = e.currentTarget.value.replace(/\./g, ""); _setAssetValueGRANTS(raw); }} onKeyPress={(e: KeyboardEvent) => { if (!/[0-9]/.test(e.key)) { e.preventDefault(); } }} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE", "font-size": "0.75rem",  }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
+                <Input inputMode="numeric" value={formatNumber(_assetValueGRANTS())} type="text" onInput={(e: any) => { const raw = e.currentTarget.value.replace(/\./g, ""); _setAssetValueGRANTS(raw); }} onKeyPress={(e: KeyboardEvent) => { if (!/[0-9]/.test(e.key)) { e.preventDefault(); } }} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE", "font-size": "0.75rem", }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
               </div>
               <div>
                 <p class="text-xs h-[2.5vh] flex items-end">Date Received*</p>
                 <Input value={_dataReceivedGRANTS()} onInput={(e: any) => _setDataReceivedGRANTS(e.currentTarget.value)} type="date" style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE", "font-size": "0.75rem", }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
+              </div>
+              <div>
+                <p class="text-xs h-[2.5vh] flex items-end">Relation with Grantor*</p>
+                <Input value={_relationsGRANTS()} onInput={(e: any) => _setRelationGRANTS(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE", "font-size": "0.75rem", }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
               </div>
               <div>
                 <p class="text-xs h-[2.5vh] flex items-end">Additional Notes*</p>

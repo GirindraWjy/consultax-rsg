@@ -56,7 +56,7 @@ const Sidebar: Component = () => {
   return (
     <div>
       {/* DESKTOP SIDEBAR */}
-      <div class="hidden md:flex container-sidebar h-full flex-col items-center pt-6 gap-3 px-4">
+      <div class="hidden md:flex container-sidebar h-full flex-col items-center pt-6 gap-6 px-4">
         <a href="/home">
           <img src={logo} alt="logo" class="logo-img w-9 h-9" />
         </a>
