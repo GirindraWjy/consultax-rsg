@@ -127,7 +127,8 @@ export const getDataPPH = () => {
         • Royalties : Rp ${_royalties() || "0"}
         • Additional Notes : ${_additialNotes() || "-"}
 
-        Please calculate the PPh that must be paid (monthly and annually) based on the information above.
+        Silakan hitung jumlah Pajak Penghasilan (PPh) yang harus dibayar (bulanan dan tahunan) berdasarkan informasi di atas
+
     `.trim();
 
     if (!userMessage) return;
@@ -200,7 +201,7 @@ export const getDataGRANTS = () => {
         • Data Received : ${_dataReceivedGRANTS() || "0"}
         • Additional Notes : ${_addNotesGRANTS() || "-"}
 
-        Please calculate the gift & inheritance tax that must be paid
+        Silakan hitung pajak hibah dan warisan yang harus dibayar berdasarkan data di atas
     `.trim();
 
     if (!userMessage) return;
@@ -269,7 +270,7 @@ export const getDataINHERITANCE = () => {
         • Asset Value : Rp ${_assetValue() || "-"}
         • Additional Notes : ${_additionalNotesINHERITANCE() || "-"}
 
-        Please analyze the inheritance tax obligation based on the information above.
+        Silakan analisis kewajiban pajak atas warisan berdasarkan data yang tercantum di atas.
         `.trim();
 
     if (!userMessage) return;

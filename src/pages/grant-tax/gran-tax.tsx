@@ -31,7 +31,6 @@ const GrantTax: Component = () => {
       !_assetValueGRANTS().trim() ||
       !_assetValueGRANTS().trim() ||
       !_dataReceivedGRANTS().trim() ||
-      !_addNotesGRANTS().trim() ||
       !_relationsGRANTS().trim() ||
       !_typeIncomeGRANTS().trim()
     ) {
@@ -125,7 +124,7 @@ const GrantTax: Component = () => {
             <div class="grid grid-cols-12 gap-6 pt-[3vh]">
               <div class="col-span-4 col-start-5">
                 <div class="flex flex-col items-center">
-                  <p class="text-sm h-[2.5vh] flex items-end">Additional Notes*</p>
+                  <p class="text-sm h-[2.5vh] flex items-end">Additional Notes</p>
                   <Input value={_addNotesGRANTS()} onInput={(e: any) => _setAddNoteGRANTS(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
                 </div>
               </div>
@@ -207,7 +206,7 @@ const GrantTax: Component = () => {
                 <Input value={_relationsGRANTS()} onInput={(e: any) => _setRelationGRANTS(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE", "font-size": "0.75rem", }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
               </div>
               <div>
-                <p class="text-xs h-[2.5vh] flex items-end">Additional Notes*</p>
+                <p class="text-xs h-[2.5vh] flex items-end">Additional Notes</p>
                 <Input value={_addNotesGRANTS()} onInput={(e: any) => _setAddNoteGRANTS(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE", "font-size": "0.75rem", }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
               </div>
             </div>
