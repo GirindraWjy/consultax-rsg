@@ -80,9 +80,14 @@ export const getData = () => {
         return [...prev, { ai: "loading" }];
     });
 
+    const prevChats = _chatHistory();
+    const userChats = prevChats.filter((chat) => chat.user);
+    const historyChat =
+        userChats.length >= 2 ? userChats[userChats.length - 2].user || "" : "";
+
     _setLoading(true);
 
-    consultaxService.getAIMsg(userMessage).then((data: any) => {
+    consultaxService.getAIMsg(userMessage, historyChat).then((data: any) => {
         const aiMessage = data.reply;
 
         _setChatHistory(prev => {
@@ -134,6 +139,10 @@ export const getDataPPH = () => {
         aiIndex = prev.length;
         return [...prev, { ai: "loading" }];
     });
+    const prevChats = _chatHistory();
+    const userChats = prevChats.filter((chat) => chat.user);
+    const historyChat =
+        userChats.length >= 2 ? userChats[userChats.length - 2].user || "" : "";
 
     _setLoading(true);
 
@@ -160,7 +169,8 @@ export const getDataPPH = () => {
             _withHeldTax(),
             _installmentPayments(),
             _royalties(),
-            _additialNotes()
+            _additialNotes(),
+            historyChat,
         )
         .then((data: any) => {
             const aiMessage = data.reply;
@@ -203,6 +213,11 @@ export const getDataGRANTS = () => {
         return [...prev, { ai: "loading" }];
     });
 
+    const prevChats = _chatHistory();
+    const userChats = prevChats.filter((chat) => chat.user);
+    const historyChat =
+        userChats.length >= 2 ? userChats[userChats.length - 2].user || "" : "";
+
     _setLoading(true);
 
     consultaxService
@@ -219,6 +234,7 @@ export const getDataGRANTS = () => {
             _assetValueGRANTS(),
             _dataReceivedGRANTS(),
             _addNotesGRANTS(),
+            historyChat,
         )
         .then((data: any) => {
             const aiMessage = data.reply;
@@ -266,6 +282,11 @@ export const getDataINHERITANCE = () => {
         return [...prev, { ai: "loading" }];
     });
 
+    const prevChats = _chatHistory();
+    const userChats = prevChats.filter((chat) => chat.user);
+    const historyChat =
+        userChats.length >= 2 ? userChats[userChats.length - 2].user || "" : "";
+
     _setLoading(true);
 
     consultaxService
@@ -285,7 +306,8 @@ export const getDataINHERITANCE = () => {
             _testamentaryGift(),
             _cryptoOrSecurities(),
             _assetValue(),
-            _additionalNotesINHERITANCE()
+            _additionalNotesINHERITANCE(),
+            historyChat,
         ).then((data: any) => {
             const aiMessage = data.reply;
             _setChatHistory(prev => {

@@ -10,6 +10,7 @@ console.log("Current API URL:", urlToBE);
 export const consultaxService = {
   getAIMsg: async (
     userMessage: any,
+    historyChat: any,
   ) => {
     const url = `${urlToBE}/chat`;
     try {
@@ -18,6 +19,7 @@ export const consultaxService = {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           userMessage,
+          historyChat,
         }),
       });
       const data = await res.json();
@@ -51,6 +53,7 @@ export const consultaxService = {
     installmentPayments: any,
     royalties: any,
     additionalNotes: any,
+    historyChat: any,
 
   ) => {
     const url = `${urlToBE}/pphchat`;
@@ -80,7 +83,8 @@ export const consultaxService = {
           withheldTax,
           installmentPayments,
           royalties,
-          additionalNotes
+          additionalNotes,
+          historyChat
         }),
       });
       const data = await res.json();
@@ -104,6 +108,7 @@ export const consultaxService = {
     assetValue: any,
     dataReceived: any,
     addNotes: any,
+    historyChat: any,
   ) => {
     const url = `${urlToBE}/grantschat`;
     try {
@@ -122,7 +127,8 @@ export const consultaxService = {
           assetType,
           assetValue,
           dataReceived,
-          addNotes
+          addNotes,
+          historyChat,
         }),
       });
       const data = await res.json();
@@ -150,6 +156,7 @@ export const consultaxService = {
     cryptoOrSecurities: any,
     assetValue: any,
     additionalNotes: any,
+    historyChat: any,
   ) => {
     const url = `${urlToBE}/inheritanceschat`;
     try {
@@ -172,7 +179,8 @@ export const consultaxService = {
           testamentaryGift,
           cryptoOrSecurities,
           assetValue,
-          additionalNotes
+          additionalNotes,
+          historyChat
         }),
       });
       const data = await res.json();
