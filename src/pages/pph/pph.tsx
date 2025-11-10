@@ -1,4 +1,4 @@
-import { createEffect, createSignal, type Component } from "solid-js";
+import { createEffect, createSignal, For, type Component } from "solid-js";
 import { Input, InputGroup, InputRightElement } from "@hope-ui/solid";
 import "./pph.css";
 import PageWrapper from "../wrapper/wrapper";
@@ -11,6 +11,16 @@ import kanan from "../../assets/png/gambar kanan.png"
 import { _additialNotes, _allowances, _assetSold, _dependents, _dividend, _donation, _foreignIncome, _installmentPayments, _jobExpenses, _jobs, _marital, _name, _npwp, _officialContribution, _pensionContribution, _prize, _proIncome, _rentalIncome, _royalties, _runBusiness, _salary, _setAdditionalNotes, _setAllowances, _setAssetSold, _setDependents, _setDividend, _setDonation, _setForeignIncome, _setInstallmentPayments, _setJobExpenses, _setJobs, _setMarital, _setName, _setNPWP, _setOfficialContribution, _setPentionContribution, _setPrize, _setProIncome, _setRentalIncome, _setRoyalties, _setRunBusiness, _setSalary, _setWithHeldTax, _withHeldTax, getDataPPH } from "../../store/store";
 import { useNavigate } from "@solidjs/router";
 import { notificationService } from "@hope-ui/solid";
+import { Select } from "@hope-ui/solid";
+import { SelectTrigger } from "@hope-ui/solid";
+import { SelectPlaceholder } from "@hope-ui/solid";
+import { SelectValue } from "@hope-ui/solid";
+import { SelectIcon } from "@hope-ui/solid";
+import { SelectContent } from "@hope-ui/solid";
+import { SelectListbox } from "@hope-ui/solid";
+import { SelectOption } from "@hope-ui/solid";
+import { SelectOptionText } from "@hope-ui/solid";
+import { SelectOptionIndicator } from "@hope-ui/solid";
 
 const PPH: Component = () => {
   const navigate = useNavigate();
@@ -84,7 +94,30 @@ const PPH: Component = () => {
             <div class="grid grid-cols-12 gap-6 pt-[3vh]">
               <div class="col-span-3">
                 <p class="text-sm h-[4vh] flex items-end">Marital Status*</p>
-                <Input value={_marital()} onInput={(e: any) => _setMarital(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
+                <Select
+                  value={_marital()}
+                  onChange={(value: string) => _setMarital(value)}
+                >
+                  <SelectTrigger
+                    style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }}
+                    _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }}>
+                    <SelectPlaceholder>Choose a Marital Status</SelectPlaceholder>
+                    <SelectValue />
+                    <SelectIcon />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectListbox>
+                      <For each={["Married", "Not Married"]}>
+                        {item => (
+                          <SelectOption value={item}>
+                            <SelectOptionText>{item}</SelectOptionText>
+                            <SelectOptionIndicator />
+                          </SelectOption>
+                        )}
+                      </For>
+                    </SelectListbox>
+                  </SelectContent>
+                </Select>
               </div>
               <div class="col-span-3">
                 <p class="text-sm h-[4vh] flex items-end">Jobs*</p>
@@ -213,7 +246,30 @@ const PPH: Component = () => {
               </div>
               <div>
                 <p class="text-xs h-[4vh] flex items-end">Marital Status*</p>
-                <Input value={_marital()} onInput={(e: any) => _setMarital(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE", "font-size": "0.75rem", }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
+                <Select
+                  value={_marital()}
+                  onChange={(value: string) => _setMarital(value)}
+                >
+                  <SelectTrigger
+                    style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }}
+                    _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }}>
+                    <SelectPlaceholder>Choose a Marital Status</SelectPlaceholder>
+                    <SelectValue />
+                    <SelectIcon />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectListbox>
+                      <For each={["Married", "Not Married"]}>
+                        {item => (
+                          <SelectOption value={item}>
+                            <SelectOptionText>{item}</SelectOptionText>
+                            <SelectOptionIndicator />
+                          </SelectOption>
+                        )}
+                      </For>
+                    </SelectListbox>
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <p class="text-xs h-[4vh] flex items-end">Jobs*</p>

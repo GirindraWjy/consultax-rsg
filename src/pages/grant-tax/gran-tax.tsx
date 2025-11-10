@@ -1,4 +1,4 @@
-import type { Component } from "solid-js";
+import { For, type Component } from "solid-js";
 import { Input, InputGroup, InputRightElement } from "@hope-ui/solid";
 import "./grant-tax.css";
 import balik from "../../assets/png/arrow.png"
@@ -11,6 +11,16 @@ import kanan from "../../assets/png/gambar kanan.png"
 import { notificationService } from "@hope-ui/solid";
 import { _addNotesGRANTS, _assetTypeGRANTS, _assetValueGRANTS, _dataReceivedGRANTS, _jobGRANTS, _maritalGRANTS, _nameGRANTS, _nodGRANTS, _npwpGRANTS, _relationsGRANTS, _setAddNoteGRANTS, _setAssetTypeGRANTS, _setAssetValueGRANTS, _setDataReceivedGRANTS, _setJobGRANTS, _setMaritalGRANTS, _setNameGRANTS, _setNODGRANTS, _setNPWPGRANTS, _setRelationGRANTS, _setSourceIncomeGRANTS, _setTypeIncomeGRANTS, _sourceIncomeGRANTS, _typeIncomeGRANTS, getDataGRANTS } from "../../store/store";
 import { useNavigate } from "@solidjs/router";
+import { Select } from "@hope-ui/solid";
+import { SelectTrigger } from "@hope-ui/solid";
+import { SelectValue } from "@hope-ui/solid";
+import { SelectPlaceholder } from "@hope-ui/solid";
+import { SelectContent } from "@hope-ui/solid";
+import { SelectIcon } from "@hope-ui/solid";
+import { SelectListbox } from "@hope-ui/solid";
+import { SelectOption } from "@hope-ui/solid";
+import { SelectOptionText } from "@hope-ui/solid";
+import { SelectOptionIndicator } from "@hope-ui/solid";
 
 const GrantTax: Component = () => {
   const navigate = useNavigate();
@@ -70,7 +80,7 @@ const GrantTax: Component = () => {
               }}
             />
           </div>
-          <div class="form-grant scrollbar-auto-hiderelative z-10">
+          <div class="form-grant scrollbar-auto-hide relative z-10">
             <div class="grid grid-cols-12 gap-6">
               <div class="col-span-6">
                 <p class="text-sm h-[2.5vh] flex items-end">Name*</p>
@@ -88,7 +98,30 @@ const GrantTax: Component = () => {
             <div class="grid grid-cols-12 gap-6 pt-[3vh]">
               <div class="col-span-3">
                 <p class="text-sm h-[2.5vh] flex items-end">Marital Status*</p>
-                <Input value={_maritalGRANTS()} onInput={(e: any) => _setMaritalGRANTS(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
+                <Select
+                  value={_maritalGRANTS()}
+                  onChange={(value: string) => _setMaritalGRANTS(value)}
+                >
+                  <SelectTrigger
+                    style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }}
+                    _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }}>
+                    <SelectPlaceholder>Choose a Marital Status</SelectPlaceholder>
+                    <SelectValue />
+                    <SelectIcon />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectListbox>
+                      <For each={["Married", "Not Married"]}>
+                        {item => (
+                          <SelectOption value={item}>
+                            <SelectOptionText>{item}</SelectOptionText>
+                            <SelectOptionIndicator />
+                          </SelectOption>
+                        )}
+                      </For>
+                    </SelectListbox>
+                  </SelectContent>
+                </Select>
               </div>
               <div class="col-span-3">
                 <p class="text-sm h-[2.5vh] flex items-end">Jobs*</p>
@@ -175,8 +208,31 @@ const GrantTax: Component = () => {
               </div>
               <div>
                 <p class="text-xs h-[2.5vh] flex items-end">Marital Status*</p>
-                <Input value={_maritalGRANTS()} onInput={(e: any) => _setMaritalGRANTS(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE", "font-size": "0.75rem", }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
-              </div>
+                <Select
+                  value={_maritalGRANTS()}
+                  onChange={(value: string) => _setMaritalGRANTS(value)}
+                >
+                  <SelectTrigger
+                    style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE" }}
+                    _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }}>
+                    <SelectPlaceholder>Choose a Marital Status</SelectPlaceholder>
+                    <SelectValue />
+                    <SelectIcon />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectListbox>
+                      <For each={["Married", "Not Married"]}>
+                        {item => (
+                          <SelectOption value={item}>
+                            <SelectOptionText>{item}</SelectOptionText>
+                            <SelectOptionIndicator />
+                          </SelectOption>
+                        )}
+                      </For>
+                    </SelectListbox>
+                  </SelectContent>
+                </Select>
+                </div>
               <div>
                 <p class="text-xs h-[2.5vh] flex items-end">Jobs*</p>
                 <Input value={_jobGRANTS()} onInput={(e: any) => _setJobGRANTS(e.currentTarget.value)} style={{ background: "#F8F7FE", "border-radius": "1vh", "box-shadow": "0 2px 3.5px rgba(93, 93, 93, 0.4)", "border-color": "#F8F7FE", "font-size": "0.75rem", }} _focus={{ boxShadow: "none", borderColor: "#d9d9d9", outline: "none", }} />
