@@ -86,7 +86,7 @@ const MessagePage: Component = () => {
                         <img
                           src={user}
                           alt="user"
-                          class="w-12 h-12 object-contain rounded-full flex-shrink-0"
+                          class="w-16 h-16 object-contain rounded-full flex-shrink-0"
                         />
                       </div>
                     )}
@@ -97,7 +97,7 @@ const MessagePage: Component = () => {
                           <img
                             src={ai}
                             alt="ai"
-                            class="w-12 h-12 object-contain rounded-full flex-shrink-0"
+                            class="w-16 h-16 object-contain rounded-full flex-shrink-0"
                           />
                           <div class="chat-ai flex flex-col items-start gap-2">
                             {chat.ai === "loading" ? (

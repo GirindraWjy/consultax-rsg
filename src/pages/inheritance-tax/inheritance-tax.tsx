@@ -67,7 +67,7 @@ const InheritanceTable: Component = () => {
               }}
             />
           </div>
-          <div class="relative z-10">
+          <div class="form-inheritance scrollbar-auto-hide relative z-10">
             <div class="grid grid-cols-12 gap-6">
               <div class="col-span-6">
                 <p class="text-sm h-[4vh] flex items-end">Name of deceased*</p>
@@ -174,7 +174,7 @@ const InheritanceTable: Component = () => {
               }}
             />
           </div>
-          <div class="relative z-10">
+          <div class="scrollbar-auto-hide relative z-10">
             <div class="flex flex-col overflow-scroll h-[80vh]">
               <div>
                 <p class="text-xs h-[4vh] flex items-end">Name of deceased*</p>

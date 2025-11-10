@@ -70,7 +70,7 @@ const GrantTax: Component = () => {
               }}
             />
           </div>
-          <div class="relative z-10">
+          <div class="form-grant scrollbar-auto-hiderelative z-10">
             <div class="grid grid-cols-12 gap-6">
               <div class="col-span-6">
                 <p class="text-sm h-[2.5vh] flex items-end">Name*</p>

@@ -45,7 +45,7 @@ const PPH: Component = () => {
   return (
     <PageWrapper>
       <div class="font-[Plus_Jakarta_Sans] flex justify-center items-center h-full">
-        <div class="container-pph hidden md:block">
+        <div class="container-pph bg-[white] hidden md:block">
           <div class="w-full flex justify-between">
             <a href="/home">
               <div class="flex items-center gap-3">
@@ -66,7 +66,7 @@ const PPH: Component = () => {
               }}
             />
           </div>
-          <div class="relative z-10">
+          <div class="form-pph scrollbar-auto-hide relative z-10">
             <div class="grid grid-cols-12 gap-6">
               <div class="col-span-6">
                 <p class="text-sm h-[4vh] flex items-end">Name*</p>
